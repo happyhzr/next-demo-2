@@ -1,6 +1,5 @@
 import ExporeButton from "@/components/ExporeButton";
 import EventCard from "@/components/EventCard";
-import { events } from "@/lib/constants";
 import { IEvent } from "@/database";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL

@@ -1,5 +1,8 @@
+'use client'
+
 import Link from "next/link";
 import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 
 interface Props {
     title: string;
@@ -13,7 +16,7 @@ interface Props {
 const EventCard = ({ title, image, slug, location, date, time }: Props) => {
     return (
         <Link href={`/events/${slug}`} id="event-card">
-            <Image src={image} alt={title} width={410} height={300} className="poster" />
+            <CldImage src={image} alt={title} width={410} height={300} className="poster" crop={{ type: 'auto', source: true }} />
             <div className="flex flex-row gap-2">
                 <Image src='/icons/pin.svg' alt="" width={14} height={14} />
                 <p>{location}</p>
