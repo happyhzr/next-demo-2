@@ -2,9 +2,12 @@
 
 import { CldImage } from "next-cloudinary"
 import Image from "next/image";
-import BookEvent from "./BookEvent";
+import BookEvent from "@/components/BookEvent";
+import { IEvent } from "@/database";
+import EventCard from "@/components/EventCard";
 
 interface Props {
+    slug: string;
     description: string;
     image: string;
     overview: string;
@@ -16,6 +19,7 @@ interface Props {
     agenda: string[];
     organizer: string;
     tags: string[];
+    similarEvents: IEvent[];
 }
 
 const EventDetailItem = ({ icon, alt, label }: { icon: string; alt: string; label: string; }) => {
@@ -54,7 +58,7 @@ const EventTags = ({ tags }: { tags: string[] }) => {
     )
 }
 
-const EventDetails = ({ description, image, overview, date, time, location, mode, audience, agenda, organizer, tags }: Props) => {
+const EventDetails = ({ slug, description, image, overview, date, time, location, mode, audience, agenda, organizer, tags, similarEvents }: Props) => {
     const bookings = 10
     return (
         <section id="event">
@@ -86,7 +90,7 @@ const EventDetails = ({ description, image, overview, date, time, location, mode
                 </div>
                 <aside className="booking">
                     <div className="signup-card">
-                        <h2>Book Your Spot</h2>
+                        <h2 className="text-white">Book Your Spot</h2>
                         {
                             bookings > 0 ? (
                                 <p className="text-sm">
@@ -101,6 +105,16 @@ const EventDetails = ({ description, image, overview, date, time, location, mode
                         <BookEvent />
                     </div>
                 </aside>
+            </div>
+            <div className="flex w-full flex-col gap-4 pt-20">
+                <h2>Similar Events</h2>
+                <div className="events">
+                    {
+                        similarEvents.map((e: IEvent) => (
+                            <EventCard {...e} />
+                        ))
+                    }
+                </div>
             </div>
         </section>
     )

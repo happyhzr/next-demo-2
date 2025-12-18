@@ -1,6 +1,33 @@
+'use client'
+
+import React, { useState } from "react"
+import { Button } from "@/components/ui/button"
+
 const BookEvent = () => {
+    const [email, setEmail] = useState('')
+    const [submitted, setSubmitted] = useState(false)
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        setTimeout(() => {
+            setSubmitted(true)
+        }, 1000);
+    }
     return (
-        <div></div>
+        <div id="book-event">
+            {
+                submitted ? (
+                    <p className="text-sm">Thank you for signing up!</p>
+                ) : (
+                    <form action="" onSubmit={handleSubmit}>
+                        <div className="text-white">
+                            <label htmlFor="email">Email Address</label>
+                            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email address" />
+                        </div>
+                        <Button type="submit" variant='outline'>Submit</Button>
+                    </form>
+                )
+            }
+        </div>
     )
 }
 
