@@ -81,12 +81,12 @@ const EventDetails = ({ slug, description, image, overview, date, time, location
                         <EventDetailItem icon="/icons/mode.svg" alt="" label={mode} />
                         <EventDetailItem icon="/icons/audience.svg" alt="" label={audience} />
                     </section>
-                    <EventAgenda agendaItems={JSON.parse(agenda[0])} />
+                    <EventAgenda agendaItems={agenda} />
                     <section className="flex-col gap-2">
                         <h2>About the Organizer</h2>
                         <p>{organizer}</p>
                     </section>
-                    <EventTags tags={JSON.parse(tags[0])} />
+                    <EventTags tags={tags} />
                 </div>
                 <aside className="booking">
                     <div className="signup-card">
@@ -111,7 +111,7 @@ const EventDetails = ({ slug, description, image, overview, date, time, location
                 <div className="events">
                     {
                         similarEvents.map((e: IEvent) => (
-                            <EventCard {...e} />
+                            <EventCard key={e.title} {...e} />
                         ))
                     }
                 </div>

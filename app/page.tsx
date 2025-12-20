@@ -1,10 +1,13 @@
 import ExporeButton from "@/components/ExporeButton";
 import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database";
+import { cacheLife } from "next/cache";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export default async function Home() {
+  'use cache'
+  cacheLife('seconds')
   const response = await fetch(`${BASE_URL}/api/events`)
   const { events } = await response.json()
   return (
@@ -16,7 +19,7 @@ export default async function Home() {
         <h3>Featured Events</h3>
         <ul className="events">
           {events.map((e: IEvent) => (
-            <li key={e.title}>
+            <li key={e.title} className="list-none">
               <EventCard {...e} />
             </li>
           ))}
