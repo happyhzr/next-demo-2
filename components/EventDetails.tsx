@@ -7,6 +7,7 @@ import { IEvent } from "@/database";
 import EventCard from "@/components/EventCard";
 
 interface Props {
+    _id: string;
     slug: string;
     description: string;
     image: string;
@@ -58,7 +59,7 @@ const EventTags = ({ tags }: { tags: string[] }) => {
     )
 }
 
-const EventDetails = ({ slug, description, image, overview, date, time, location, mode, audience, agenda, organizer, tags, similarEvents }: Props) => {
+const EventDetails = ({ _id, slug, description, image, overview, date, time, location, mode, audience, agenda, organizer, tags, similarEvents }: Props) => {
     const bookings = 10
     return (
         <section id="event">
@@ -102,7 +103,7 @@ const EventDetails = ({ slug, description, image, overview, date, time, location
                                 </p>
                             )
                         }
-                        <BookEvent />
+                        <BookEvent eventId={_id} slug={slug} />
                     </div>
                 </aside>
             </div>
