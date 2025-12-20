@@ -7,8 +7,7 @@ import { events } from "@/lib/constants";
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export default async function Home() {
-  'use cache'
-  cacheLife('seconds')
+  // cacheLife('seconds')
   // const response = await fetch(`${BASE_URL}/api/events`)
   // const { events } = await response.json()
   return (
