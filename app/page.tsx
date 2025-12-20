@@ -2,14 +2,15 @@ import ExporeButton from "@/components/ExporeButton";
 import EventCard from "@/components/EventCard";
 import { IEvent } from "@/database";
 import { cacheLife } from "next/cache";
+import { events } from "@/lib/constants";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
 export default async function Home() {
   'use cache'
   cacheLife('seconds')
-  const response = await fetch(`${BASE_URL}/api/events`)
-  const { events } = await response.json()
+  // const response = await fetch(`${BASE_URL}/api/events`)
+  // const { events } = await response.json()
   return (
     <section>
       <h1 className="text-center">Hello</h1>
@@ -18,7 +19,7 @@ export default async function Home() {
       <div className="mt-20 space-y-7">
         <h3>Featured Events</h3>
         <ul className="events">
-          {events.map((e: IEvent) => (
+          {events.map((e) => (
             <li key={e.title} className="list-none">
               <EventCard {...e} />
             </li>
